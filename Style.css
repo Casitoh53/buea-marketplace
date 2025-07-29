@@ -41,6 +41,7 @@ body {
   display: flex;
   list-style: none;
   gap: 20px;
+flex-wrap: wrap;
 }
 
 .nav-links li a {
@@ -510,7 +511,7 @@ nav {
 /* Hero Section */
 .hero {
   background: url('https://via.placeholder.com/1200x400?text=Hero+Banner') no-repeat center/cover;
-  color: white;
+  color: gray;
   text-align: center;
   padding: 4rem 1rem;
 }
