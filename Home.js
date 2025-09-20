@@ -27,7 +27,7 @@ const categoryFilter = document.getElementById('categoryFilter');
       if (username) {
         document.getElementById("auth-buttons").style.display = "none";
         document.getElementById("user-info").style.display = "flex";
-        document.getElementById("welcome-user").innerText = Welcome, ${username};
+  document.getElementById("welcome-user").innerText = `Welcome, ${username}`;
         localStorage.setItem("username", username);
       }
     }
@@ -47,7 +47,7 @@ const categoryFilter = document.getElementById('categoryFilter');
       if (username) {
         document.getElementById("auth-buttons").style.display = "none";
         document.getElementById("user-info").style.display = "flex";
-        document.getElementById("welcome-user").innerText = Welcome, ${username};
+  document.getElementById("welcome-user").innerText = `Welcome, ${username}`;
       }
     };
 
@@ -72,7 +72,7 @@ const categoryFilter = document.getElementById('categoryFilter');
       cart.forEach((item, index) => {
         total += item.price;
         const li = document.createElement("li");
-        li.innerHTML =  {item.name} - ${item.price} FCFA <button onclick="removeFromCart(${index})">Remove</button>;
+  li.innerHTML = `${item.name} - ${item.price} FCFA <button onclick="removeFromCart(${index})">Remove</button>`;
         cartList.appendChild(li);
       });
 

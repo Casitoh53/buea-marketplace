@@ -1,6 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BUMACE – Unleash Your Style</title>
+  <meta name="description" content="Minimal fashion landing page with hero banner and collection cards." />
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ------------------------------------------------------------------
+       Base Reset (small, future-friendly)
+    ------------------------------------------------------------------ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html:focus-within { scroll-behavior: smooth; }
+    body { margin: 0; min-height: 100vh; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+    img, picture { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    /* ------------------------------------------------------------------
+       Design Tokens
+    ------------------------------------------------------------------ */
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f5f3;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --brand: #e9d5c9; /* pale peach seen in the screenshot */
+      --brand-ink: #0f172a;
+      --ring: 0 0 0 2px rgba(0,0,0,.06), 0 0 0 6px rgba(0,0,0,.04);
+      --radius: 16px;
+      --shadow-card: 0 10px 25px rgba(0,0,0,.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0b0c;
+        --bg-soft: #151517;
+        --text: #f3f3f3;
+        --muted: #a1a1a8;
+        --brand: #2a2a2e;
+        --brand-ink: #f8fafc;
+        --shadow-card: 0 10px 25px rgba(0,0,0,.4);
+      }
+    }
+
+    /* ------------------------------------------------------------------
+       Layout
+    ------------------------------------------------------------------ */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.5;
+    }
+    .container { width: min(1200px, 92vw); margin-inline: auto; }
+    .stack { display: grid; gap: clamp(16px, 2vw, 28px); }
+
+    /* ------------------------------------------------------------------
+       Header / Navbar
+    ------------------------------------------------------------------ */
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; background: var(--text); color: var(--bg); padding: 8px 12px; border-radius: 8px; z-index: 999; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.4px; }
+    .logo {
+      inline-size: 100px; 
+      block-size: 100px; border-radius: 25px;
+      background: conic-gradient(from 60deg, #f59e0b, #ef4444, #8b5cf6, #14b8a6, #f59e0b);
+      box-shadow: inset 0 0 0 6px var(--bg);
+    }
+    nav ul { text-transform: uppercase; list-style: none; display: flex; gap: 28px; padding: 0; margin: 0; }
+    nav a { font-weight: 500; color: var(--muted); }
+    nav a[aria-current="page"], nav a:hover { color: var(--text); }
+
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .icon-btn { position: relative; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px; }
+    .icon-btn:hover { background: var(--bg-soft); }
+    .badge { position: absolute; right: -2px; top: -2px; background: #111827; color: #fff; font-size: 11px; border-radius: 999px; padding: 2px 6px; }
+
+    /* ------------------------------------------------------------------
+       Hero Section
+    ------------------------------------------------------------------ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      min-height: clamp(520px, 90vh, 900px);
+      /* break out of any container to span the viewport */
+      width: 100vw;
+      margin-inline: calc(50% - 50vw);
+      background: var(--bg-soft);
+      border-radius: 0;         /* avoid rounded edges on full-bleed */
+      box-shadow: none;         /* optional: remove shadow on full-bleed */
+      overflow: clip;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    .hero-copy {
+      padding: clamp(28px, 6vw, 72px);
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      position: relative;
+    }
+
+    .eyebrow { color: var(--muted); letter-spacing: .25em; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif; font-weight: 700; line-height: 1.08;
+      font-size: clamp(28px, 4vw, 46px);
+    }
+
+    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; background: var(--bg); box-shadow: var(--shadow-card); width: fit-content; }
+    .cta:hover { transform: translateY(-1px); }
+
+    .slider-dots { position: absolute; left: clamp(20px, 3vw, 40px); bottom: clamp(20px, 3vw, 40px); display: flex; gap: 10px; }
+    .dot { 
+      width: 10px; height: 10px; border-radius: 999px; 
+      background: color-mix(in srgb, var(--text) 18%, transparent); 
+      opacity: .5; 
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dot.active, .dot[aria-current="true"] { 
+      width: 12px; height: 12px; 
+      opacity: 1; 
+      background: var(--text); 
+    }
+    .dot:hover { opacity: 0.8; }
+
+    .hero-media { 
+      position: relative; 
+      background: var(--brand); 
+      overflow: hidden;
+    }
+    
+    /* Hero slide styles for the slider */
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 800ms ease-in-out;
+    }
+    
+    .hero-slide.active {
+      opacity: 1;
+    }
+    
+    .hero-slide img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      mix-blend-mode: multiply; 
+    }
+
+    /* Social rail */
+    .social-rail { position: fixed; left: 8px; top: 45vh; display: grid; gap: 10px; }
+    .social-rail a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; background: var(--bg); box-shadow: var(--shadow-card); color: var(--muted); }
+    .social-rail a:hover { color: var(--text); }
+
+    /* ------------------------------------------------------------------
+       Collections Grid
+    ------------------------------------------------------------------ */
+    .collections { margin-block: clamp(26px, 5vw, 64px); }
+    .grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+
+    .card { position: relative; background: var(--bg-soft); border-radius: var(--radius); overflow: clip; box-shadow: var(--shadow-card); }
+    .card img { width: 100%; height: 100%; object-fit: cover; }
+    .card .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.35), transparent 40%); opacity: 0; transition: opacity .25s ease; }
+    .card:hover .overlay { opacity: 1; }
+    .card .content { position: absolute; left: 18px; bottom: 18px; color: white; text-shadow: 0 4px 18px rgba(0,0,0,.35); }
+    .card .kicker { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: .9; }
+    .card h3 { margin: 6px 0 4px; font-size: clamp(18px, 2.5vw, 26px); }
+
+    .right-col { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
+    .right-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .right-row { grid-template-columns: 1fr; } }
+
+    /* Accessibility helpers */
+    .visually-hidden { position: absolute!important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Fixed social links (optional) -->
+  <aside class="social-rail" aria-label="social links">
+    <a href="#" aria-label="Instagram"><i class="ri-instagram-line" aria-hidden="true"></i></a>
+    <a href="#" aria-label="Pinterest"><i class="ri-pinterest-line" aria-hidden="true"></i></a>
+    <a href="#" aria-label="Dribbble"><i class="ri-dribbble-line" aria-hidden="true"></i></a>
+  </aside>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#" aria-label="Moda home">
+        <img src="./images/bumace_logo.jpeg" height="100" class="logo" width="100" alt="Bumace Logo" srcset="">
+        <!-- <span class="logo" aria-hidden="true"></span>
+        <span>BUMACE</span> -->
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#" aria-current="page">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#pages">Pages</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions" aria-label="Account & cart">
+        <button class="icon-btn" aria-label="Search"><i class="ri-search-line" aria-hidden="true"></i></button>
+        <button class="icon-btn" aria-label="Account"><i class="ri-user-3-line" aria-hidden="true"></i></button>
+        <button class="icon-btn" aria-label="Wishlist"><i class="ri-heart-3-line" aria-hidden="true"></i></button>
+        <button class="icon-btn" aria-label="Cart">
+          <i class="ri-shopping-bag-3-line" aria-hidden="true"></i>
+          <span class="badge" aria-label="items in cart">2</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container stack" tabindex="-1">
+    <!-- Hero -->
+    <section class="hero" aria-label="New collection">
+      <div class="hero-copy">
+        <p class="eyebrow">New Trend</p>
+        <h1>Unleash your style with our new collection</h1>
+        <a class="cta" href="#shop"><span>Discover More</span> <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+      <div class="hero-media" role="img" aria-label="Fashion collection slideshow">
+        <!-- Slide 1 - Shopping model (active by default) -->
+        <div class="hero-slide active">
+          <img alt="Smiling woman with shopping bags" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+        
+        <!-- Slide 2 - Fashion portrait -->
+        <div class="hero-slide">
+          <img alt="Elegant Woman with hat with hand bags" src="https://images.unsplash.com/photo-1643616964756-7e2822e38ee9?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+        
+        <!-- Slide 3 - Fashion accessories -->
+        <div class="hero-slide">
+          <img alt="Fashion accessories and clothing flatlay" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+        
+        <!-- Slider dots will be generated by JavaScript -->
+        <div class="slider-dots" role="tablist" aria-label="hero slides"></div>
+      </div>
+    </section>
+
+    <!-- Collections -->
+    <section class="collections" aria-label="Shop by collection">
+      <div class="grid">
+        <!-- Left: Women collection (large card) -->
+        <article class="card" aria-label="Women Collection">
+          <img src="https://images.unsplash.com/photo-1560869576-27d79ed41443?q=80&w=1600&auto=format&fit=crop" alt="Woman in yellow jacket carrying shopping bags" />
+          <div class="overlay" aria-hidden="true"></div>
+          <div class="content">
+            <div class="kicker">Women Collection</div>
+            <h3>Fashion Now</h3>
+          </div>
+        </article>
+
+        <!-- Right: 2x2 cards -->
+        <div class="right-col">
+          <div class="right-row">
+            <article class="card" aria-label="Men Collection">
+              <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Man in casual shirt looking down" />
+              <div class="overlay" aria-hidden="true"></div>
+              <div class="content">
+                <div class="kicker">Men Collection</div>
+                <h3>Shop Now</h3>
+              </div>
+            </article>
+            <article class="card" aria-label="Gift Cards">
+              <img src="https://images.unsplash.com/photo-1664138304322-e0aa6c9f1ca1?q=80&w=1200&auto=format&fit=crop" alt="Gift card and ribbon" />
+              <div class="overlay" aria-hidden="true"></div>
+              <div class="content">
+                <div class="kicker">Gift Cards</div>
+                <h3>Make It Special</h3>
+              </div>
+            </article>
+          </div>
+          <div class="right-row">
+            <article class="card" aria-label="Kids Collection">
+              <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1200&auto=format&fit=crop" alt="Smiling kid wearing sunglasses" />
+              <div class="overlay" aria-hidden="true"></div>
+              <div class="content">
+                <div class="kicker">Kids Collection</div>
+                <h3>Playful Styles</h3>
+              </div>
+            </article>
+            <article class="card" aria-label="Accessories">
+              <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWNjZXNzb3JpZXN8ZW58MHx8MHx8fDA%3D" alt="Woman accessories flatlay" />
+              <div class="overlay" aria-hidden="true"></div>
+              <div class="content">
+                <div class="kicker">Accessories</div>
+                <h3>Final Touch</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" style="padding: 48px 0 80px; color: var(--muted); font-size: 14px;">
+    <p>© <span id="year"></span> BUMACE. Crafted for the Buea Marketplace with Unsplash photography.</p>
+  </footer>
+
+  <script>
+    // Small progressive enhancement: year stamp and focus ring helper
+   
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="./js/hero-slider.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> Home | BUMACE</title>
@@ -62,82 +401,88 @@
         </div>
 
 
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/b-game.webp" class="product-img" alt="Product 2" />
-          <h4>Board game</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+          <div class="product" data-category="other" data-price="8000">
+            <img src="images/b-game.webp" class="product-img" alt="Board game" />
+            <h4>Board game</h4>
+            <p>8,000 FCFA - Vendor C</p>
+            <button class="btn-primary" onclick="addToCart('Board game', 8000)">Add to Cart</button>
+          </div>
+
+
+          <div class="product" data-category="other" data-price="15000">
+            <img src="images/bicycle.webp" class="product-img" alt="Bicycle" />
+            <h4>Bicycle</h4>
+            <p>15,000 FCFA - Vendor D</p>
+            <button class="btn-primary" onclick="addToCart('Bicycle', 15000)">Add to Cart</button>
+          </div>
+
+
+          <div class="product" data-category="electronics" data-price="25000">
+            <img src="images/microwave.webp" class="product-img" alt="Microwave" />
+            <h4>Microwave</h4>
+            <p>25,000 FCFA - Vendor E</p>
+            <button class="btn-primary" onclick="addToCart('Microwave', 25000)">Add to Cart</button>
+          </div>
 
 
           <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/bicycle.webp" class="product-img" alt="Product 2" />
-          <h4>Bicycle</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+            <img src="images/shirt.webp" class="product-img" alt="Shirt glo-34" />
+            <h4>Shirt glo-34</h4>
+            <p>8,000 FCFA - Vendor B</p>
+            <button class="btn-primary" onclick="addToCart('Shirt glo-34', 8000)">Add to Cart</button>
+          </div>
 
 
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/microwave.webp" class="product-img" alt="Product 2" />
-          <h4>Microwave</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+          <div class="product" data-category="clothing" data-price="7500">
+            <img src="images/shirt2.webp" class="product-img" alt="Shirt-322" />
+            <h4>Shirt-322</h4>
+            <p>7,500 FCFA - Vendor B</p>
+            <button class="btn-primary" onclick="addToCart('Shirt-322', 7500)">Add to Cart</button>
+          </div>
 
 
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/shirt.webp" class="product-img" alt="Product 2" />
-          <h4>Shirt glo-34</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+          <div class="product" data-category="beauty" data-price="3500">
+            <img src="images/skinecare.webp" class="product-img" alt="Snushy rub" />
+            <h4>Snushy rub</h4>
+            <p>3,500 FCFA - Vendor F</p>
+            <button class="btn-primary" onclick="addToCart('Snushy rub', 3500)">Add to Cart</button>
+          </div>
 
 
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/shirt2.webp" class="product-img" alt="Product 2" />
-          <h4>Shirt-322</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+          <div class="product" data-category="electronics" data-price="120000">
+            <img src="images/smartphones.webp" class="product-img" alt="Smart phone" />
+            <h4>Smart phone</h4>
+            <p>120,000 FCFA - Vendor G</p>
+            <button class="btn-primary" onclick="addToCart('Smart phone', 120000)">Add to Cart</button>
+          </div>
 
 
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/skinecare.webp" class="product-img" alt="Product 2" />
-          <h4>Snushy rub</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
-
-
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/smartphones.webp" class="product-img" alt="Product 2" />
-          <h4>Smart phone</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
-
-
-          <div class="product" data-category="clothing" data-price="8000">
-          <img src="images/watch.webp" class="product-img" alt="Product 2" />
-          <h4>Richard Mille</h4>
-          <p>8,000 FCFA - Vendor B</p>
-          <button class="btn-primary" onclick="addToCart('Ankara Dress', 8000)">Add to Cart</button>
-        </div>
+          <div class="product" data-category="accessories" data-price="80000">
+            <img src="images/watch.webp" class="product-img" alt="Richard Mille" />
+            <h4>Richard Mille</h4>
+            <p>80,000 FCFA - Vendor H</p>
+            <button class="btn-primary" onclick="addToCart('Richard Mille', 80000)">Add to Cart</button>
+          </div>
 
  
       </div>
-    </div><div class="seller-tools">
-  <h3>Seller Dashboard</h3>
-  <ul>
-    <li><a href="#">Add Product</a></li>
-    <li><a href="#">Manage Orders</a></li>
-    <li><a href="#">View Sales Stats</a></li>
-  </ul>
-  <h4>🛒 Your Cart</h4>
-  <ul id="cart-list"></ul>
-  <p><strong>Total:</strong> <span id="cart-total">0</span> FCFA</p>
-</div>
+    </div>
+    <aside class="seller-dashboard">
+      <h3><i class="fa fa-chart-line"></i> Seller Dashboard</h3>
+      <div class="dashboard-summary">
+        <div><i class="fa fa-box"></i> Products: <span id="dashboard-products">10</span></div>
+        <div><i class="fa fa-shopping-bag"></i> Orders: <span id="dashboard-orders">2</span></div>
+        <div><i class="fa fa-money-bill"></i> Sales: <span id="dashboard-sales">50,000</span> FCFA</div>
+      </div>
+      <div class="dashboard-actions">
+        <button class="btn-primary"><i class="fa fa-plus"></i> Add Product</button>
+        <button class="btn-secondary"><i class="fa fa-tasks"></i> Manage Orders</button>
+        <button class="btn-secondary"><i class="fa fa-chart-bar"></i> View Sales Stats</button>
+      </div>
+      <h4>🛒 Your Cart</h4>
+      <ul id="cart-list"></ul>
+      <p><strong>Total:</strong> <span id="cart-total">0</span> FCFA</p>
+    </aside>
 
   </section>  <section class="testimonials">
     <h2>What People Say</h2>
@@ -154,7 +499,7 @@
       <h4>🤝 Trusted Vendors</h4>
     </div>
   </section>
-   <!-- Footer -->
+   Footer
   <footer class="footer">
     <p>© 2025 BUMACE. Powered in Buea, Cameroon.</p>
     <div class="social-icons">
@@ -167,4 +512,4 @@
     
     
   </body>
-</html>
+</html> -->
