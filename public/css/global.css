@@ -1,0 +1,236 @@
+/* ------------------------------------------------------------------
+       Base Reset (small, future-friendly)
+    ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	cursor: pointer;
+}
+
+/* ------------------------------------------------------------------
+       Design Tokens
+    ------------------------------------------------------------------ */
+:root {
+	--bg: #ffffff;
+	--bg-soft: #f6f5f3;
+	--text: #1a1a1a;
+	--muted: #6b7280;
+	--brand: #e9d5c9;
+	/* pale peach seen in the screenshot */
+	--brand-ink: #0f172a;
+	--ring: 0 0 0 2px rgba(0, 0, 0, 0.06), 0 0 0 6px rgba(0, 0, 0, 0.04);
+	--radius: 16px;
+	--shadow-card: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #0b0b0c;
+		--bg-soft: #151517;
+		--text: #f3f3f3;
+		--muted: #a1a1a8;
+		--brand: #2a2a2e;
+		--brand-ink: #f8fafc;
+		--shadow-card: 0 10px 25px rgba(0, 0, 0, 0.4);
+	}
+}
+
+/* ------------------------------------------------------------------
+       Layout
+    ------------------------------------------------------------------ */
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+		Arial, "Apple Color Emoji", "Segoe UI Emoji";
+	line-height: 1.5;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	width: min(1200px, 92vw);
+	margin-inline: auto;
+}
+
+.stack {
+	display: grid;
+	gap: clamp(16px, 2vw, 28px);
+}
+
+.cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	border-radius: 999px;
+	background: var(--bg);
+	box-shadow: var(--shadow-card);
+	width: fit-content;
+}
+
+.cta:hover {
+	transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------------
+       Header / Navbar
+    ------------------------------------------------------------------ */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link:focus {
+	left: 16px;
+	top: 16px;
+	width: auto;
+	height: auto;
+	background: var(--text);
+	color: var(--bg);
+	padding: 8px 12px;
+	border-radius: 8px;
+	z-index: 999;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 999;
+	backdrop-filter: saturate(160%) blur(8px);
+	background: color-mix(in srgb, var(--bg) 92%, transparent);
+	border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 0;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 700;
+	letter-spacing: 0.4px;
+}
+
+.logo {
+	inline-size: 100px;
+	block-size: 100px;
+	border-radius: 25px;
+	background: conic-gradient(
+		from 60deg,
+		#f59e0b,
+		#ef4444,
+		#8b5cf6,
+		#14b8a6,
+		#f59e0b
+	);
+	box-shadow: inset 0 0 0 6px var(--bg);
+}
+
+nav ul {
+	text-transform: uppercase;
+	list-style: none;
+	display: flex;
+	gap: 28px;
+	padding: 0;
+	margin: 0;
+}
+
+nav a {
+	font-weight: 500;
+	color: var(--muted);
+}
+
+nav a[aria-current="page"],
+nav a:hover {
+	color: var(--text);
+}
+
+.nav-actions {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.icon-btn {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 999px;
+}
+
+.icon-btn:hover {
+	cursor: pointer;
+	background: var(--bg-soft);
+}
+
+.badge {
+	position: absolute;
+	right: -2px;
+	top: -2px;
+	background: #111827;
+	color: #fff;
+	font-size: 11px;
+	border-radius: 999px;
+	padding: 2px 6px;
+	cursor: pointer;
+}
+
+/* FOOTER STYLES */
+/* footer {
+	padding: 48px 0 80px;
+	color: var(--muted);
+	font-size: 14px;
+} */
+
+footer {
+	margin-top: auto;
+	background-color: #222;
+	color: white;
+	text-align: center;
+	padding: 25px;
+}
+.social-icons a {
+	color: white;
+	margin: 0 10px;
+	font-size: 18px;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - BUMACE</title>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create an account</h2>
+    <p>Enter your details below</p>
+
+    <form id="signupForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email or Phone Number" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+
+    <div class="social-btns">
+      <div class="social-btn google">
+        <img src="./images/google.png" alt="Google">
+        Sign up with Google
+      </div>
+      <div class="social-btn facebook">
+        <img src="./images/facebook.png" alt="Facebook" width="20">
+        Sign up with Facebook
+      </div>
+      <div class="social-btn twitter">
+        <img src="./images/twitter.png" alt="Twitter" width="20">
+        Sign up with Twitter
+      </div>
+      
+     
+    </div>
+
+    <div class="footer-text">
+      Already have an account? <a href="login.html">Log in</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!name || !email || !password || !confirmPassword) {
+        alert("❌ Please fill in all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("⚠️ Passwords do not match.");
+        return;
+      }
+
+      // Check if account exists
+      const existingProfile = JSON.parse(localStorage.getItem("profileData") || "{}");
+      if (existingProfile.email && existingProfile.email === email) {
+        alert("⚠️ An account with this email already exists. Please log in instead.");
+        return;
+      }
+
+      // Save new profile
+      const newProfile = {
+        name: name,
+        email: email,
+        phone: "",
+        address: "",
+        image: null
+      };
+      localStorage.setItem("profileData", JSON.stringify(newProfile));
+      localStorage.setItem("userPassword", password);
+
+      alert("✅ Account created successfully!");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | BUMACE</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+</head>
+<body>
+  <div class="promo-banner">
+    <p>Summier Sale For All Swim Suits And Free Express Delivery – OFF 50%! <a href="#">Shop Now</a></p>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">BUMACE</div>
+    <ul class="nav-links">
+      <li><a href="login.html">Home</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Signup.html">Sign Up</a></li>
+       <li><a href="login.html">Login</a></li>
+    </ul>
+    <input type="text" class="search-bar" placeholder="What are you looking for?" />
+  </nav>
+
+  
+  <main class="page-container">
+    <div class="visual-side">
+      <img src="images/phone-mockup.webp"  alt="Phone Mockup" class="phone-img" />
+      <img src="images/shopping cart.webp" alt="Shopping Cart" class="cart-img" />
+      <img src="images/purple bag.webp" alt="Purple Bag" class="bag-img" />
+      
+    </div>
+<div class="signup-side">
+      <h2>Create a BUMACE Account</h2>
+      <p>Fill in your details to get started</p>
+      <form id="signupForm">
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="text" id="name" placeholder="Full Name" required />
+        </div>
+
+        <div class="input-group">
+          <span class="icon">📧</span>
+          <input type="email" id="email" placeholder="Email Address" required />
+        </div>
+
+        <div class="input-group">
+          <span class="icon">🔑</span>
+          <input type="password" id="password" placeholder="Password" required />
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="Signup-script.js"></script>
+
+
+
+
+ 
+</body>
+
+<footer>
+    <p>&copy; 2025 Buea Market Place. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+</html>
+
+

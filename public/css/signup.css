@@ -1,0 +1,100 @@
+body {
+	font-family: Arial, sans-serif;
+	background: linear-gradient(135deg, #3498db, #e74c3c);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.login-container,
+.signup-container {
+	background: #fff;
+	padding: 30px;
+	border-radius: 15px;
+	width: 380px;
+	padding: 30px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.signup-container h2 {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.signup-container p {
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 20px;
+	color: #666;
+}
+.signup-container input {
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+.btn {
+	width: 100%;
+	padding: 12px;
+	background: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.btn:hover {
+	background: #2980b9;
+}
+.social-btns {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 15px;
+}
+.social-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+}
+.social-btn img {
+	width: 20px;
+}
+.google {
+	background: #fff;
+}
+.facebook {
+	background: #3b5998;
+	color: #fff;
+	border: none;
+}
+.twitter {
+	background: #1da1f2;
+	color: #fff;
+	border: none;
+}
+.github {
+	background: #333;
+	color: #fff;
+	border: none;
+}
+.footer-text {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 14px;
+}
+.footer-text a {
+	text-decoration: none;
+	color: #3498db;
+	font-weight: bold;
+}

@@ -1,0 +1,32 @@
+{
+	"name": "buea-marketplace",
+	"version": "1.0.0",
+	"description": "Buea Marketplace is a web  based e-commerce platform designed to connect local vendors and customers  in Buea, Cameroon. It enables users to browse, buy and sell pproducts securely and efficiently through a user-friendly interface.",
+	"main": "About.js",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Casitoh53/buea-marketplace.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/Casitoh53/buea-marketplace/issues"
+	},
+	"homepage": "https://github.com/Casitoh53/buea-marketplace#readme",
+	"dependencies": {
+		"@supabase/supabase-js": "^2.57.4",
+		"cookie-parser": "^1.4.7",
+		"dotenv": "^17.2.2",
+		"express": "^5.1.0",
+		"nodemailer": "^7.0.6"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}
