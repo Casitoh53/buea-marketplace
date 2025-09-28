@@ -24,9 +24,15 @@ function loadSummary() {
 async function placeOrder(e) {
 	e.preventDefault();
 
+	const btn = document.getElementById("placeOrderBtn");
+	btn.disabled = true;
+	btn.innerText = "Loading..."; // 🔄 show loading state
+
 	const cart = JSON.parse(localStorage.getItem("cart")) || [];
 	if (cart.length === 0) {
 		alert("Your cart is empty.");
+		btn.disabled = false;
+		btn.innerText = "Place Order"; // reset
 		return;
 	}
 
@@ -50,12 +56,10 @@ async function placeOrder(e) {
 		});
 
 		if (res.ok) {
-			// Save order to localStorage
 			let orders = JSON.parse(localStorage.getItem("orders")) || [];
 			orders.push(order);
 			localStorage.setItem("orders", JSON.stringify(orders));
 
-			// Clear cart
 			localStorage.removeItem("cart");
 			alert("✅ Order placed successfully!");
 			window.location.href = "/orders";
@@ -65,6 +69,9 @@ async function placeOrder(e) {
 	} catch (err) {
 		console.error(err);
 		alert("❌ Error placing order.");
+	} finally {
+		btn.disabled = false;
+		btn.innerText = "Place Order"; // reset on error
 	}
 }
 

@@ -18,6 +18,13 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+.btn:disabled {
+	background-color: #ccc; /* greyed out background */
+	color: #666; /* dimmed text */
+	cursor: not-allowed; /* show blocked cursor */
+	opacity: 0.7; /* slight transparency */
+}
+
 img,
 picture {
 	max-width: 100%;
