@@ -1,0 +1,124 @@
+{
+	"products": [
+		{
+			"id": "prod-001",
+			"name": "Tomatoes 5kg",
+			"category": "Food",
+			"price": 2500,
+			"vendor": "Vendor A",
+			"image_url": "images/tomatoes.webp",
+			"timestamp": "2025-09-24T10:30:00Z",
+			"rating": 4.2,
+			"quantity_sold": 18,
+			"tags": ["new", "top"]
+		},
+		{
+			"id": "prod-002",
+			"name": "Ankara Dress",
+			"category": "Clothing",
+			"price": 12000,
+			"vendor": "Vendor B",
+			"image_url": "images/ankara-m.webp",
+			"timestamp": "2025-08-30T14:15:00Z",
+			"rating": 4.8,
+			"quantity_sold": 12,
+			"tags": ["best", "top"]
+		},
+		{
+			"id": "prod-003",
+			"name": "Board game",
+			"category": "Toys & Games",
+			"price": 7500,
+			"vendor": "Vendor B",
+			"image_url": "images/b-game.webp",
+			"timestamp": "2025-09-18T09:45:00Z",
+			"rating": 4.5,
+			"quantity_sold": 25,
+			"tags": ["new", "best"]
+		},
+		{
+			"id": "prod-004",
+			"name": "Bicycle",
+			"category": "Sporting Goods",
+			"price": 45000,
+			"vendor": "Vendor B",
+			"image_url": "images/bicycle.webp",
+			"timestamp": "2025-07-22T16:20:00Z",
+			"rating": 4.7,
+			"quantity_sold": 9,
+			"tags": ["top"]
+		},
+		{
+			"id": "prod-005",
+			"name": "Microwave",
+			"category": "Electronics & Appliances",
+			"price": 32000,
+			"vendor": "Vendor B",
+			"image_url": "images/microwave.webp",
+			"timestamp": "2025-09-20T11:10:00Z",
+			"rating": 4.1,
+			"quantity_sold": 15,
+			"tags": ["new"]
+		},
+		{
+			"id": "prod-006",
+			"name": "Shirt glo-34",
+			"category": "Clothing",
+			"price": 9500,
+			"vendor": "Vendor B",
+			"image_url": "images/shirt.webp",
+			"timestamp": "2025-06-25T13:25:00Z",
+			"rating": 4.3,
+			"quantity_sold": 21,
+			"tags": ["best"]
+		},
+		{
+			"id": "prod-007",
+			"name": "Shirt-322",
+			"category": "Clothing",
+			"price": 8700,
+			"vendor": "Vendor B",
+			"image_url": "images/shirt2.webp",
+			"timestamp": "2025-09-22T08:45:00Z",
+			"rating": 4.1,
+			"quantity_sold": 14,
+			"tags": ["new", "top"]
+		},
+		{
+			"id": "prod-008",
+			"name": "Snushy rub",
+			"category": "Health & Beauty",
+			"price": 4000,
+			"vendor": "Vendor B",
+			"image_url": "images/skinecare.webp",
+			"timestamp": "2025-05-10T10:30:00Z",
+			"rating": 4.4,
+			"quantity_sold": 28,
+			"tags": ["best", "top"]
+		},
+		{
+			"id": "prod-009",
+			"name": "Smart phone",
+			"category": "Electronics",
+			"price": 75000,
+			"vendor": "Vendor B",
+			"image_url": "images/smartphones.webp",
+			"timestamp": "2025-09-15T14:15:00Z",
+			"rating": 4.9,
+			"quantity_sold": 7,
+			"tags": ["new"]
+		},
+		{
+			"id": "prod-010",
+			"name": "Richard Mille",
+			"category": "Fashion Accessories",
+			"price": 95000,
+			"vendor": "Vendor B",
+			"image_url": "images/watch.webp",
+			"timestamp": "2025-04-05T09:20:00Z",
+			"rating": 3.7,
+			"quantity_sold": 5,
+			"tags": ["top"]
+		}
+	]
+}

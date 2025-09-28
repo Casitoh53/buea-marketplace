@@ -1,0 +1,175 @@
+body {
+	font-family: Arial, sans-serif;
+	background: #fdfdfd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+input,
+button {
+	background: transparent;
+	color: #333;
+	border: 0;
+	outline: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.form-input-group {
+	display: flex;
+	flex-direction: column;
+	row-gap: 2px;
+	margin-bottom: 12px;
+}
+
+.form-input-group label {
+	color: #777777;
+	font-size: 14px;
+}
+
+.form-input-group .form-input input {
+	flex: 1;
+	border: 1px solid #ececec;
+	background: #ffffff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.form-input {
+	position: relative;
+	display: flex;
+}
+
+.form-input .show-password-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+}
+
+.signup-container,
+.login-container {
+	background: #fff;
+	padding: 30px;
+	border-radius: 15px;
+	width: 380px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.go-home {
+	width: max-content;
+	display: block;
+	text-decoration: none;
+	margin-inline: auto;
+	padding: 12px;
+	background: #333333;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.signup-container h2,
+.login-container h2 {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.signup-container p,
+.login-container p {
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 20px;
+	color: #666;
+}
+
+.login-container input {
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.btn {
+	width: 100%;
+	padding: 12px;
+	background: black;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+}
+.btn:hover {
+	background: #333333;
+}
+
+.create-account-link {
+	text-align: center;
+	color: #777;
+}
+.create-account-link a {
+	color: #000;
+	font-weight: bold;
+}
+
+.social-btns {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 15px;
+}
+.social-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+}
+.social-btn img {
+	width: 20px;
+}
+.google {
+	background: #fff;
+}
+.facebook {
+	background: #3b5998;
+	color: #fff;
+	border: none;
+}
+.twitter {
+	background: #1da1f2;
+	color: #fff;
+	border: none;
+}
+.github {
+	background: #333;
+	color: #fff;
+	border: none;
+}
+
+.footer-text {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 14px;
+	color: #777777;
+}
+.footer-text a {
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+}

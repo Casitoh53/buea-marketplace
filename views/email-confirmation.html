@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Confirm Your Email</title>
+		<style>
+			body {
+				font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				background: #f9fafb;
+				margin: 0;
+			}
+			.card {
+				background: #fff;
+				padding: 32px;
+				border-radius: 12px;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+				max-width: 420px;
+				width: 100%;
+				text-align: center;
+			}
+			.logo {
+				width: 80px;
+				height: 80px;
+				padding: 4px;
+				margin: 0 auto 16px;
+				border-radius: 12px;
+				background: #000;
+				border-radius: 999px;
+			}
+
+			.logo img {
+				border-radius: 999px;
+				width: 100%;
+				height: 100%;
+			}
+
+			h1 {
+				font-size: 22px;
+				margin: 12px 0;
+			}
+			p {
+				color: #4b5563;
+				font-size: 15px;
+				line-height: 1.5;
+			}
+			button {
+				margin-top: 24px;
+				padding: 12px 18px;
+				border: none;
+				border-radius: 8px;
+				background: #000;
+				color: #fff;
+				font-size: 15px;
+				font-weight: 600;
+				cursor: pointer;
+			}
+			button:hover {
+				background: #333333;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="card">
+			<div class="logo">
+				<img
+					src="/images/bumace_logo.jpeg"
+					alt="Buea market place"
+					width="60"
+					height="60"
+				/>
+			</div>
+			<h1>Confirm your email</h1>
+			<p>
+				We’ve sent a confirmation link to your email address. Please
+				check your inbox and click the link to activate your
+				account.
+			</p>
+			<form action="/login" method="get">
+				<button type="submit">Go to Login</button>
+			</form>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Login - BUMACE</title>
+		<link rel="stylesheet" href="/css/auth.css" />
+		<!-- Icons -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="login-container">
+			<a href="/" class="go-home">Go Home</a>
+			<h2>Welcome Back</h2>
+			<form id="form">
+				<div class="form-input-group">
+					<label for="email">Email</label>
+					<div class="form-input">
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Email"
+							required
+							autocomplete="off"
+						/>
+					</div>
+				</div>
+
+				<div class="form-input-group">
+					<label for="password">Password</label>
+					<div class="form-input">
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Password"
+							autocomplete="off"
+							autofocus="off"
+							required
+						/>
+						<button
+							class="show-password-btn"
+							aria-label="show-password-toggler"
+							type="button"
+						>
+							<i class="ri-eye-close-line"></i>
+						</button>
+					</div>
+				</div>
+				<button type="submit" class="btn" data-form_type="login">
+					Log In
+				</button>
+			</form>
+
+			<p class="create-account-link">
+				Don't have an account
+				<a href="/signup"> Create New Account </a>
+			</p>
+
+			<!-- <div class="social-btns">
+				<div class="social-btn google">
+					<img src="./images/google.png" alt="Google" />
+					Log in with Google
+				</div>
+			</div> -->
+
+			<div class="footer-text">
+				Forgot your password? <a href="#">Reset here</a>
+			</div>
+		</div>
+
+		<script src="/js/auth.js"></script>
+	</body>
+</html>

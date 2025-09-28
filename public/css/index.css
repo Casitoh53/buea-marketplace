@@ -1,0 +1,466 @@
+/* ==================================================================
+   CSS Variables & Reset
+================================================================== */
+:root {
+	--bg: #ffffff;
+	--bg-soft: #ececec;
+	--text: #111111;
+	--muted: #666666;
+	--brand: #your-brand-color;
+	--radius: 8px;
+	--shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.visually-hidden {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+/* ==================================================================
+   Hero Section
+================================================================== */
+.hero {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: stretch;
+	min-height: clamp(520px, 90vh, 900px);
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
+	background: var(--bg-soft);
+	border-radius: 0;
+	box-shadow: none;
+	overflow: clip;
+}
+
+.hero-copy {
+	padding: clamp(28px, 6vw, 72px);
+	display: grid;
+	align-content: center;
+	gap: 18px;
+	position: relative;
+}
+
+.hero h1 {
+	font-family: "Playfair Display", serif;
+	font-weight: 700;
+	line-height: 1.08;
+	font-size: clamp(28px, 4vw, 46px);
+}
+
+.eyebrow {
+	color: var(--muted);
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.hero-media {
+	position: relative;
+	background: var(--brand);
+	overflow: hidden;
+}
+
+.hero-slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 800ms ease-in-out;
+}
+
+.hero-slide.active {
+	opacity: 1;
+}
+
+.hero-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	mix-blend-mode: multiply;
+}
+
+.slider-dots {
+	position: absolute;
+	left: clamp(20px, 3vw, 40px);
+	bottom: clamp(20px, 3vw, 40px);
+	display: flex;
+	gap: 10px;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--text) 18%, transparent);
+	opacity: 0.5;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.dot.active,
+.dot[aria-current="true"] {
+	width: 12px;
+	height: 12px;
+	opacity: 1;
+	background: var(--text);
+}
+
+.dot:hover {
+	opacity: 0.8;
+}
+
+/* ==================================================================
+   Social Rail
+================================================================== */
+.social-rail {
+	position: fixed;
+	left: 8px;
+	top: 45vh;
+	display: grid;
+	gap: 10px;
+	z-index: 1000;
+}
+
+.social-rail a {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 999px;
+	background: var(--bg);
+	box-shadow: var(--shadow-card);
+	color: var(--muted);
+	transition: color 0.2s ease;
+}
+
+.social-rail a:hover {
+	color: var(--text);
+}
+
+/* ==================================================================
+   Collections Grid
+================================================================== */
+.collections {
+	margin-block: clamp(26px, 5vw, 64px);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1.2fr 0.8fr;
+	gap: 20px;
+}
+
+.right-col {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	gap: 20px;
+}
+
+.right-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+.card {
+	position: relative;
+	background: var(--bg-soft);
+	border-radius: var(--radius);
+	overflow: hidden;
+	box-shadow: var(--shadow-card);
+}
+
+.card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.card:hover img {
+	transform: scale(1.02);
+}
+
+.card .overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 40%);
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.card:hover .overlay {
+	opacity: 1;
+}
+
+.card .content {
+	position: absolute;
+	left: 18px;
+	bottom: 18px;
+	color: white;
+	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.card .kicker {
+	font-size: 12px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+
+.card h3 {
+	margin: 6px 0 4px;
+	font-size: clamp(18px, 2.5vw, 26px);
+}
+
+/* ==================================================================
+   Deal of the Week Section
+================================================================== */
+.deal {
+	padding: 56px 0;
+}
+
+.deal-banner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: stretch;
+	background: var(--bg-soft);
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: var(--shadow-card);
+}
+
+.deal-copy {
+	padding: clamp(24px, 5vw, 56px);
+	display: grid;
+	align-content: center;
+	gap: 14px;
+	border-right: 1px solid #ececec;
+}
+
+.deal-copy .kicker {
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-size: 12px;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.deal-copy h2 {
+	font-family: "Playfair Display", serif;
+	font-size: clamp(24px, 3vw, 34px);
+	margin: 0;
+	line-height: 1.2;
+}
+
+.deal-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--text);
+	color: var(--bg);
+	padding: 10px 14px;
+	border-radius: 999px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.deal-cta:hover {
+	opacity: 0.9;
+}
+
+.deal-media {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+	background: linear-gradient(90deg, rgba(0, 0, 0, 0.02), transparent);
+}
+
+.deal-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.deal-features {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 14px;
+	margin-top: 14px;
+}
+
+.feature {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	padding: 14px;
+	background: var(--bg);
+	border: 1px solid #efefef;
+	border-radius: 14px;
+}
+
+.feature i {
+	font-size: 24px;
+	color: var(--muted);
+}
+
+.feature-title {
+	font-weight: 700;
+	font-size: 14px;
+}
+
+.feature-sub {
+	font-size: 12px;
+	color: var(--muted);
+}
+
+/* ==================================================================
+   Responsive Design
+================================================================== */
+@media (max-width: 1100px) {
+	.product-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.deal-features {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 900px) {
+	.hero {
+		grid-template-columns: 1fr;
+	}
+
+	.deal-banner {
+		grid-template-columns: 1fr;
+	}
+
+	.deal-copy {
+		border-right: none;
+		border-bottom: 1px solid #ececec;
+	}
+}
+
+@media (max-width: 780px) {
+	.product-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.right-row {
+		grid-template-columns: 1fr;
+	}
+
+	.deal-features {
+		grid-template-columns: 1fr;
+	}
+
+	.products-head {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.tabs {
+		gap: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.product-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.social-rail {
+		display: none;
+	}
+}
+
+/* ==================================================================
+   Enhanced Product Card Styles (for new features)
+================================================================== */
+.product-info-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 10px;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+	color: white;
+	font-size: 11px;
+	z-index: 1;
+}
+
+.quantity-sold,
+.timestamp {
+	background: rgba(0, 0, 0, 0.6);
+	padding: 2px 6px;
+	border-radius: 10px;
+	backdrop-filter: blur(4px);
+}
+
+.badge.best-seller {
+	background: #e74c3c;
+	top: 40px;
+}
+
+.add-to-cart-btn {
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+	background: var(--text);
+	color: var(--bg);
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	font-weight: 600;
+	transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background: #333;
+}
+
+.cart-notification {
+	position: fixed;
+	top: 100px;
+	right: 20px;
+	background: #27ae60;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 6px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transform: translateX(100%);
+	transition: transform 0.3s ease;
+	z-index: 1000;
+}
+
+.cart-notification.show {
+	transform: translateX(0);
+}
+
+.cart-notification i {
+	margin-right: 8px;
+}
