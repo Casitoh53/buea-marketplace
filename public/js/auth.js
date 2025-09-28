@@ -45,9 +45,7 @@ form.addEventListener("submit", async (e) => {
 
 		if (data.success) {
 			window.location.href =
-				formType === "signup"
-					? "/email-confirmation"
-					: "/dashboard";
+				formType === "signup" ? "/email-confirmation" : "/";
 		} else {
 			alert(`❌ ${data.error}`);
 		}
