@@ -23,7 +23,7 @@ form.addEventListener("submit", async (e) => {
 	};
 
 	try {
-		const response = await fetch("api/mail/contact", {
+		const response = await fetch("/api/mail/contact", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formData),

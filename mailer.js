@@ -6,14 +6,19 @@ const credentials = {
 	pass: process.env.EMAIL_PASS,
 };
 
-async function sendContactFormEmail({ name, subject, email, phone, message }) {
-	const to = "caesyadi628@gmail.com";
-	try {
-		const transporter = nodemailer.createTransport({
-			service: "gmail",
-			auth: credentials,
-		});
+const MAIL_TO = process.env.MAIL_TO;
+// ✅ Create transporter instance once with explicit config (better for Render)
+const transporter = nodemailer.createTransport({
+	host: "smtp.gmail.com",
+	port: 465, // use 465 for SSL, 587 for STARTTLS
+	secure: true, // true for 465, false for 587
+	auth: credentials,
+	connectionTimeout: 10000, // 10s timeout (helps avoid hanging on Render)
+});
 
+async function sendContactFormEmail({ name, subject, email, phone, message }) {
+	const to = MAIL_TO;
+	try {
 		const htmlBody = `
       <h2>New Contact Form Submission</h2>
       <p><strong>Name:</strong> ${name}</p>
@@ -35,13 +40,8 @@ async function sendContactFormEmail({ name, subject, email, phone, message }) {
 }
 
 async function sendCheckoutEmail(order) {
-	const to = "caesyadi628@gmail.com"; // admin email
+	const to = MAIL_TO; // admin email
 	try {
-		const transporter = nodemailer.createTransport({
-			service: "gmail",
-			auth: credentials,
-		});
-
 		const itemsHtml = order.items
 			.map(
 				(item) =>
