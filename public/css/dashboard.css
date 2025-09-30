@@ -1,0 +1,400 @@
+/* Main content */
+.main {
+	flex: 1;
+	width: 100%;
+	padding: 40px;
+}
+.content-section {
+	background: var(--card-bg);
+	padding: 22px;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+	margin-bottom: 20px;
+}
+
+.welcome {
+	background: linear-gradient(135deg, var(--blue), #9b59b6);
+	color: #fff;
+	padding: 22px;
+	border-radius: 10px;
+	margin-bottom: 16px;
+}
+.welcome h2 {
+	margin: 0 0 6px;
+	font-size: 20px;
+}
+
+/* Cards grid */
+.cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 18px;
+}
+.card {
+	background: var(--card-bg);
+	padding: 18px;
+	border-radius: 10px;
+	min-height: 110px;
+	box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+.card h3 {
+	margin: 0 0 8px;
+	color: var(--blue);
+	font-size: 16px;
+	text-align: center;
+}
+
+.card p {
+	font-weight: bold;
+	text-align: center;
+	margin: 6px 0;
+	color: #444;
+	font-size: 24px;
+}
+.card .small {
+	font-size: 13px;
+	color: #666;
+}
+
+.btn {
+	background: var(--blue);
+	color: #fff;
+	border: none;
+	padding: 10px 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 14px;
+}
+.btn.secondary {
+	background: #6c757d;
+}
+.btn.danger {
+	background: #e74c3c;
+}
+
+/* Profile */
+.profile-card {
+	display: flex;
+	gap: 28px;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+.profile-avatar {
+	flex: 0 0 150px;
+	text-align: center;
+}
+.profile-avatar img {
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 4px solid var(--blue);
+}
+.profile-avatar input[type="file"] {
+	margin-top: 12px;
+	font-size: 13px;
+}
+
+.profile-details {
+	flex: 1;
+	min-width: 260px;
+}
+.profile-details label {
+	display: block;
+	font-weight: 600;
+	margin: 10px 0 6px;
+	font-size: 13px;
+}
+.profile-details input,
+.profile-details textarea {
+	width: 100%;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #dcdcdc;
+	font-size: 14px;
+}
+.profile-actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 12px;
+	flex-wrap: wrap;
+}
+
+/* Account info small avatar */
+.account-info {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.account-info img {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #eee;
+}
+
+/* Add these styles to your existing CSS */
+/* ==================================================================
+   Products Section
+================================================================== */
+.products {
+	padding: 40px;
+	background: #ffffff;
+	--shadow-card: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.products-head {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 18px;
+}
+
+.products h2 {
+	font-family: "Playfair Display", serif;
+	font-size: clamp(22px, 2.6vw, 28px);
+	margin: 0;
+}
+
+.tabs {
+	display: flex;
+	gap: 18px;
+	flex-wrap: wrap;
+}
+
+.tab {
+	background: none;
+	border: none;
+	padding: 8px 0;
+	font-weight: 600;
+	color: #777;
+	cursor: pointer;
+	position: relative;
+	transition: color 0.2s ease;
+}
+
+.tab.is-active {
+	color: var(--text);
+}
+
+.tab.is-active::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -6px;
+	height: 2px;
+	background: var(--text);
+}
+
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+}
+
+.product {
+	background: var(--bg-soft);
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: var(--shadow-card);
+	display: flex;
+	flex-direction: column;
+}
+
+.product-media {
+	position: relative;
+	aspect-ratio: 4/5;
+	overflow: hidden;
+}
+
+.product-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.5s ease;
+}
+
+.product:hover .product-media img {
+	transform: scale(1.04);
+}
+
+.badge {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	background: var(--text);
+	color: var(--bg);
+	border-radius: 999px;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: 600;
+	z-index: 2;
+}
+
+.product-actions {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: grid;
+	gap: 8px;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition: all 0.25s ease;
+	z-index: 2;
+}
+
+.product:hover .product-actions {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.product-actions button {
+	width: 36px;
+	height: 36px;
+	border-radius: 999px;
+	border: none;
+	background: var(--bg);
+	box-shadow: var(--shadow-card);
+	cursor: pointer;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease;
+}
+
+.product-info {
+	padding: 12px 14px;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.product-title {
+	margin: 0 0 8px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.product-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: auto;
+}
+
+.price {
+	font-weight: 700;
+	color: #111;
+}
+
+.rating {
+	display: flex;
+	gap: 2px;
+}
+
+.rating i {
+	font-size: 14px;
+	color: #ffc107;
+}
+
+.product-info-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 10px;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+	color: white;
+	font-size: 11px;
+}
+
+.quantity-sold,
+.timestamp {
+	background: rgba(0, 0, 0, 0.6);
+	padding: 2px 6px;
+	border-radius: 10px;
+}
+
+.badge.best-seller {
+	background: #e74c3c;
+	top: 40px; /* Stack badges */
+}
+
+.add-to-cart-btn {
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+	background: #111;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	font-weight: 600;
+	transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background: #333;
+}
+
+.cart-notification {
+	position: fixed;
+	top: 100px;
+	right: 20px;
+	background: #27ae60;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 6px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transform: translateX(100%);
+	transition: transform 0.3s ease;
+	z-index: 1000;
+}
+
+.cart-notification.show {
+	transform: translateX(0);
+}
+
+.cart-notification i {
+	margin-right: 8px;
+}
+
+@media screen and (max-width: 1024px) {
+	.product-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 820px) {
+	.sidebar {
+		display: none;
+	}
+	body {
+		flex-direction: column;
+	}
+	.main {
+		padding: 18px;
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 18px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.product-grid {
+		grid-template-columns: 1fr;
+	}
+}

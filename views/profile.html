@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>BUMACE - My Profile</title>
+		<link rel="stylesheet" href="/css/dashboard.css" />
+		<link rel="stylesheet" href="/css/dash_global.css" />
+	</head>
+	<body>
+		<aside class="sidebar">
+			<div>
+				<img src="/images/bumace_logo.jpeg" alt="" />
+				<h2>BUMACE</h2>
+			</div>
+			<a href="/dashboard">📈 Dashboard</a>
+			<a href="/profile" class="active">🙍 Profile</a>
+			<a href="/orders">🧾 Orders</a>
+			<a href="/cart">🛒 My Cart</a>
+			<a href="/checkout">💳 Checkout</a>
+			<a href="/">🏠 Home</a>
+			<a href="/contact">📞 Contact</a>
+			<form action="/api/auth/logout" method="POST">
+				<button type="submit">🔓 Logout</button>
+			</form>
+		</aside>
+		<div class="main" id="main-content">
+			<div id="profile-section" class="content-section">
+				<h2>My Profile</h2>
+				<div class="profile-card">
+					<div class="profile-avatar">
+						<img
+							src="https://img.icons8.com/fluency/240/user-male-circle.png"
+							alt="User"
+						/>
+						<input type="file" accept="image/*" />
+					</div>
+
+					<div class="profile-details">
+						<form id="profileForm">
+							<label for="name">Full Name</label>
+							<input
+								id="name"
+								type="text"
+								value="John Doe"
+							/>
+
+							<label for="email">Email</label>
+							<input
+								id="email"
+								type="email"
+								value="customer@example.com"
+							/>
+
+							<label for="phone">Phone</label>
+							<input
+								id="phone"
+								type="tel"
+								value="+237 678 000 111"
+							/>
+
+							<label for="address">Address</label>
+							<textarea id="address" rows="3">
+123 Buea, Cameroon</textarea
+							>
+
+							<div class="profile-actions">
+								<button class="btn" type="submit">
+									Save Profile
+								</button>
+								<button class="btn" type="button">
+									Change Password
+								</button>
+								<button
+									class="btn danger"
+									type="button"
+								>
+									Delete Account
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

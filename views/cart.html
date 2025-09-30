@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Shopping Cart</title>
+		<link rel="stylesheet" href="/css/cart.css" />
+		<link rel="stylesheet" href="/css/dash_global.css" />
+	</head>
+	<body>
+		<aside class="sidebar">
+			<div>
+				<img src="/images/bumace_logo.jpeg" alt="" />
+				<h2>BUMACE</h2>
+			</div>
+			<a href="/dashboard">📈 Dashboard</a>
+			<a href="/profile">🙍 Profile</a>
+			<a href="/orders">🧾 Orders</a>
+			<a href="/cart" class="active">🛒 My Cart</a>
+			<a href="/checkout">💳 Checkout</a>
+			<a href="/">🏠 Home</a>
+			<a href="/contact">📞 Contact</a>
+			<form action="/api/auth/logout" method="POST">
+				<button type="submit">🔓 Logout</button>
+			</form>
+		</aside>
+
+		<main>
+			<div class="container">
+				<h2>Shopping Cart</h2>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Price (CFA)</th>
+							<th>Quantity</th>
+							<th>Subtotal (CFA)</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody id="cart-items">
+						<!-- Cart items will be injected here -->
+					</tbody>
+					<p id="empty-cart" class="empty" style="display: none">
+						Your cart is empty.
+					</p>
+				</table>
+
+				<p id="empty-cart" class="empty" style="display: none">
+					Your cart is empty.
+				</p>
+
+				<div class="actions">
+					<button
+						class="btn btn-dark"
+						onclick="window.location.href='/dashboard'"
+					>
+						Return To Shop
+					</button>
+					<button class="btn btn-dark" id="update-cart">
+						Update Cart
+					</button>
+				</div>
+
+				<div class="coupon-box">
+					<input
+						type="text"
+						id="coupon-code"
+						placeholder="Coupon Code"
+					/>
+					<button class="btn btn-red" id="apply-coupon">
+						Apply Coupon
+					</button>
+				</div>
+				<p class="message" id="coupon-message"></p>
+
+				<div class="cart-total">
+					<h3>Cart Total</h3>
+					<p>Subtotal: <span id="subtotal">305000</span> CFA</p>
+					<p>Shipping: Free</p>
+					<p>
+						<b>Total: <span id="total">305000</span> CFA</b>
+					</p>
+					<button
+						class="checkout-btn"
+						onclick="window.location.href='checkout.html'"
+					>
+						Proceed to Checkout
+					</button>
+				</div>
+			</div>
+		</main>
+		<script src="/js/cart.js"></script>
+	</body>
+</html>

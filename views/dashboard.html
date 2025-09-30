@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>BUMACE - Customer Dashboard</title>
+		<link rel="stylesheet" href="/css/dashboard.css" />
+		<link rel="stylesheet" href="/css/dash_global.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<aside class="sidebar">
+			<div>
+				<img src="/images/bumace_logo.jpeg" alt="" />
+				<h2>BUMACE</h2>
+			</div>
+			<a href="/dashboard" class="active">📈 Dashboard</a>
+			<a href="/profile">🙍 Profile</a>
+			<a href="/orders">🧾 Orders</a>
+			<a href="/cart">🛒 My Cart</a>
+			<a href="/checkout">💳 Checkout</a>
+			<a href="/">🏠 Home</a>
+			<a href="/contact">📞 Contact</a>
+			<form action="/api/auth/logout" method="POST">
+				<button type="submit">🔓 Logout</button>
+			</form>
+		</aside>
+		<main>
+			<div class="main" id="main-content">
+				<div class="welcome card">
+					<h2 id="welcome-message">
+						Welcome <span id="welcome-email"></span> 👋
+					</h2>
+				</div>
+
+				<div class="cards">
+					<div class="card">
+						<h3>Total Orders</h3>
+						<p id="orders-count">0</p>
+					</div>
+
+					<div class="card">
+						<h3>Cart Items</h3>
+						<p id="cart-count">0</p>
+					</div>
+
+					<div class="card">
+						<h3>Available Products</h3>
+						<p id="products-count">0</p>
+					</div>
+				</div>
+			</div>
+			<section
+				class="container products"
+				aria-labelledby="trendy-heading"
+			>
+				<div class="products-head">
+					<h2 id="trendy-heading">Available Products</h2>
+					<div
+						class="tabs"
+						role="tablist"
+						aria-label="Product categories"
+					>
+						<button
+							class="tab is-active"
+							role="tab"
+							aria-selected="true"
+							data-filter="all"
+						>
+							All
+						</button>
+						<button
+							class="tab"
+							role="tab"
+							aria-selected="false"
+							data-filter="new"
+						>
+							New Arrivals
+						</button>
+						<button
+							class="tab"
+							role="tab"
+							aria-selected="false"
+							data-filter="best"
+						>
+							Best Seller
+						</button>
+						<button
+							class="tab"
+							role="tab"
+							aria-selected="false"
+							data-filter="top"
+						>
+							Top Rated
+						</button>
+					</div>
+				</div>
+				<div class="product-grid" data-grid>
+					<!-- Products will be dynamically generated -->
+				</div>
+			</section>
+		</main>
+		<script src="/js/load-dashboard-data.js"></script>
+		<script src="/js/products.js"></script>
+	</body>
+</html>

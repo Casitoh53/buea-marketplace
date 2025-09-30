@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>BUMACE - My Orders</title>
+		<link rel="stylesheet" href="/css/dashboard.css" />
+		<link rel="stylesheet" href="/css/dash_global.css" />
+		<style>
+			/* Container for each order */
+			.order-card {
+				background: #fff;
+				border: 1px solid #e5e7eb; /* light gray border */
+				border-radius: 8px;
+				padding: 16px;
+				margin-bottom: 20px;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+				transition: transform 0.2s ease;
+			}
+
+			.order-card:hover {
+				transform: translateY(-3px);
+			}
+
+			/* Order title */
+			.order-card h3 {
+				margin-top: 0;
+				font-size: 18px;
+				color: #111827; /* dark gray */
+				margin-bottom: 10px;
+			}
+
+			/* Order status and info */
+			.order-card p {
+				margin: 4px 0;
+				color: #374151; /* medium gray */
+				font-size: 14px;
+			}
+
+			.order-total {
+				margin-top: 12px;
+				font-size: 16px;
+				color: #111827;
+			}
+
+			/* Table styling */
+			.order-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 12px;
+				font-size: 14px;
+			}
+
+			.order-table thead {
+				background: #f9fafb;
+			}
+
+			.order-table th,
+			.order-table td {
+				border: 1px solid #e5e7eb;
+				padding: 8px 12px;
+				text-align: left;
+			}
+
+			.order-table th {
+				font-weight: 600;
+				color: #374151;
+			}
+
+			.order-table td {
+				color: #111827;
+			}
+
+			/* Highlight subtotal column */
+			.order-table td:last-child {
+				font-weight: 500;
+				color: #1f2937;
+			}
+
+			/* Responsive: stack on small screens */
+			@media (max-width: 600px) {
+				.order-table,
+				.order-table thead,
+				.order-table tbody,
+				.order-table th,
+				.order-table td,
+				.order-table tr {
+					display: block;
+					width: 100%;
+				}
+
+				.order-table thead {
+					display: none;
+				}
+
+				.order-table tr {
+					margin-bottom: 12px;
+					border-bottom: 1px solid #e5e7eb;
+				}
+
+				.order-table td {
+					padding: 8px;
+					text-align: right;
+					position: relative;
+				}
+
+				.order-table td::before {
+					content: attr(data-label);
+					position: absolute;
+					left: 8px;
+					text-align: left;
+					font-weight: 600;
+					color: #6b7280; /* gray */
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<aside class="sidebar">
+			<div>
+				<img src="/images/bumace_logo.jpeg" alt="" />
+				<h2>BUMACE</h2>
+			</div>
+			<a href="/dashboard">📈 Dashboard</a>
+			<a href="/profile">🙍 Profile</a>
+			<a href="/orders" class="active">🧾 Orders</a>
+			<a href="/cart">🛒 My Cart</a>
+			<a href="/checkout">💳 Checkout</a>
+			<a href="/">🏠 Home</a>
+			<a href="/contact">📞 Contact</a>
+			<form action="/api/auth/logout" method="POST">
+				<button type="submit">🔓 Logout</button>
+			</form>
+		</aside>
+
+		<div class="main" id="main-content">
+			<div id="orders-section" class="content-section">
+				<h2>My Orders</h2>
+				<div id="ordersList">
+					<p class="small">No orders available yet.</p>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function formatPrice(price) {
+				return price
+					.toString()
+					.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+
+			function loadOrders() {
+				const orders =
+					JSON.parse(localStorage.getItem("orders")) || [];
+				const ordersList = document.getElementById("ordersList");
+
+				ordersList.innerHTML = "";
+
+				if (orders.length === 0) {
+					ordersList.innerHTML = `<p class="small">No orders available yet.</p>`;
+					return;
+				}
+
+				orders.forEach((order, index) => {
+					const orderDiv = document.createElement("div");
+					orderDiv.classList.add("order-card");
+					orderDiv.innerHTML = `
+            <h3>Order #${index + 1}</h3>
+            <p><strong>Date:</strong> ${
+				order.date || new Date().toLocaleDateString()
+			}</p>
+            <p><strong>Status:</strong> ${order.status || "Pending"}</p>
+            <table class="order-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${order.items
+					.map(
+						(item) => `
+                  <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${formatPrice(item.price)}</td>
+                    <td>${formatPrice(item.price * item.quantity)}</td>
+                  </tr>
+                `
+					)
+					.join("")}
+              </tbody>
+            </table>
+            <p class="order-total"><strong>Total:</strong> ${formatPrice(
+				order.total
+			)}</p>
+          `;
+					ordersList.appendChild(orderDiv);
+				});
+			}
+
+			document.addEventListener("DOMContentLoaded", loadOrders);
+		</script>
+	</body>
+</html>
